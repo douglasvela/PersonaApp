@@ -92,14 +92,19 @@ function reporte_info_empleado($id_empleado){
 		         }
 		         foreach ($infoec as $infoecfila) {}
 
-		        $query_consulta_ge=mysqli_query($conexion,"SELECT * FROM sir_estado_civil WHERE id_estado_civil='".$informacion[9]."'");
+		        $query_consulta_ge=mysqli_query($conexion,"SELECT * FROM org_genero WHERE id_genero='".$informacion[9]."'");
 				while( $fila=mysqli_fetch_array($query_consulta_ge)){
 		            $infoge[] = $fila;
 		         }
 		         foreach ($infoge as $infogefila) {}
+		         	if($informacion[8]==0){
+		         		$n_e_civil="-";
+		         	}else{
+		         		$n_e_civil=$infoecfila[1];
+		         	}
 				$cuerpo .= '
 						<tr>
-							<td>'.$infoecfila[1].'</td>
+							<td>'.$n_e_civil.'</td>
 							<td>'.$infogefila[1].'</td>
 						</tr></tbody>
 						</table>
