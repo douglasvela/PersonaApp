@@ -40,7 +40,7 @@ $nr = $_POST['nr'];
 		<div class="col-lg-4">
                 <div class="card card-inverse card-primary">
                     <div class="card-body" style="cursor: pointer;" onclick="" align="center">
-                        <h1 class="text-white"><i class="mdi mdi-cake"></i> &emsp;<small><?php echo $letras; if($letras==1) { echo " Persona"; }else{ echo " Personas"; } ?></small></h1>
+                        <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $letras; if($letras==1) { echo " Persona"; }else{ echo " Personas"; } ?></small></h1>
                         <h3 class="card-title"><?php if($letras==1) { echo "Cumple "; }else{ echo "Cumplen "; } ?>años en <?=$mesesarray[date("m")-1]?><br></h3>
                     </div>
                 </div>
@@ -63,7 +63,7 @@ $nr = $_POST['nr'];
         <div class="col-lg-4">
                 <div class="card card-inverse card-success">
                     <div class="card-body" style="cursor: pointer;" onclick="" align="center">
-                        <h1 class="text-white"><i class="mdi mdi-document"></i> &emsp;<small><?php echo $numdoc; if($numdoc==1) { echo " Persona"; }else{ echo " Personas"; } ?></small></h1>
+                        <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $numdoc; if($numdoc==1) { echo " Persona"; }else{ echo " Personas"; } ?></small></h1>
                         <h3 class="card-title"><?php if($numdoc==1) { echo "Tiene "; }else{ echo "Tienen "; } ?>documentos vencidos<br></h3>
                     </div>
                 </div>

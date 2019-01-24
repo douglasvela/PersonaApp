@@ -180,6 +180,24 @@ function reporte_info_empleado($id_empleado){
 						</tr></tbody>
 						</table>
 						';
+				$cuerpo .='
+					<div class="table-responsive">
+					<table  class="table" style="font-size: 14;">
+						<thead >
+							<tr>
+								<th >Correo Electrónico</th>
+								<th >Teléfono</th>
+							</tr>
+						</thead>
+						<tbody>
+				';
+				$cuerpo .= '
+						<tr>
+							<td>'.$informacion[17].'</td>
+							<td>'.$informacion[24].'</td>
+						</tr></tbody>
+						</table>
+						';
 
 					}
 				}else{
