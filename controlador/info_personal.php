@@ -36,7 +36,7 @@ function reporte_info_empleado($id_empleado){
          if($info){ 
 				foreach ($info as $informacion) {
 		$cuerpo = '
-		<h6 style="font-size: 12;">&nbsp;&nbsp;Empleado: '.($key_nombre[1]).'</h6>
+		<h6 style="font-size: 12;">&nbsp;&nbsp;Empleado: '.$key_nombre[2].' - '.($key_nombre[1]).'</h6>
 		<div class="table-responsive">
 			<table  class="table" style="font-size: 14;">
 				<thead >
@@ -54,7 +54,8 @@ function reporte_info_empleado($id_empleado){
 						<tr>
 							<td>'.$informacion[1].'</td>
 							<td>'.$informacion[2].'</td>
-						</tr>
+						</tr></tbody>
+					</table>
 						';
 				$cuerpo .='
 					<div class="table-responsive">
@@ -71,8 +72,110 @@ function reporte_info_empleado($id_empleado){
 						<tr>
 							<td>'.$informacion[4].'</td>
 							<td>'.$informacion[5].'</td>
-						</tr>
+						</tr></tbody>
+						</table>
 						';
+				$cuerpo .='
+					<div class="table-responsive">
+					<table  class="table" style="font-size: 14;">
+						<thead >
+							<tr>
+								<th >Estado Civil</th>
+								<th >Genero</th>
+							</tr>
+						</thead>
+						<tbody>
+				';
+				$query_consulta_ec=mysqli_query($conexion,"SELECT * FROM sir_estado_civil WHERE id_estado_civil='".$informacion[8]."'");
+				while( $fila=mysqli_fetch_array($query_consulta_ec)){
+		            $infoec[] = $fila;
+		         }
+		         foreach ($infoec as $infoecfila) {}
+
+		        $query_consulta_ge=mysqli_query($conexion,"SELECT * FROM sir_estado_civil WHERE id_estado_civil='".$informacion[9]."'");
+				while( $fila=mysqli_fetch_array($query_consulta_ge)){
+		            $infoge[] = $fila;
+		         }
+		         foreach ($infoge as $infogefila) {}
+				$cuerpo .= '
+						<tr>
+							<td>'.$infoecfila[1].'</td>
+							<td>'.$infogefila[1].'</td>
+						</tr></tbody>
+						</table>
+						';
+				$cuerpo .='
+					<div class="table-responsive">
+					<table  class="table" style="font-size: 14;">
+						<thead >
+							<tr>
+								<th >Nacionalidad</th>
+								<th >Lugar de Nacimiento</th>
+							</tr>
+						</thead>
+						<tbody>
+				';
+				$query_consulta_nac=mysqli_query($conexion,"SELECT * FROM org_nacionalidad WHERE id_nacionalidad='".$informacion[10]."'");
+				while( $fila=mysqli_fetch_array($query_consulta_nac)){
+		            $infonac[] = $fila;
+		         }
+		         foreach ($infonac as $infonacfila) {}
+
+				$cuerpo .= '
+						<tr>
+							<td>'.$infonacfila[1].'</td>
+							<td>'.$informacion[12].'</td>
+						</tr></tbody>
+						</table>
+						';
+				$cuerpo .='
+					<div class="table-responsive">
+					<table  class="table" style="font-size: 14;">
+						<thead >
+							<tr>
+								<th >Fecha de Nacimiento</th>
+								<th >Estado Empleado</th>
+							</tr>
+						</thead>
+						<tbody>
+				';
+				$query_consulta_est=mysqli_query($conexion,"SELECT * FROM sir_estado WHERE id_estado='".$informacion[25]."'");
+				while( $fila=mysqli_fetch_array($query_consulta_est)){
+		            $infoest[] = $fila;
+		         }
+		         foreach ($infoest as $infoestfila) {}
+
+				$cuerpo .= '
+						<tr>
+							<td>'.date("d-m-Y",strtotime($informacion[13])).'</td>
+							<td>'.$infoestfila[1].'</td>
+						</tr></tbody>
+						</table>
+						';
+				$cuerpo .='
+					<div class="table-responsive">
+					<table  class="table" style="font-size: 14;">
+						<thead >
+							<tr>
+								<th >Fecha de Ingreso</th>
+								<th >Fecha de Retiro</th>
+							</tr>
+						</thead>
+						<tbody>
+				';
+				if($informacion[16]=='0000-00-00'){
+					$fecha_r='-';
+				}else{
+					$fecha_r = date("d-m-Y",strtotime($informacion[16]));					
+				}
+				$cuerpo .= '
+						<tr>
+							<td>'.date("d-m-Y",strtotime($informacion[15])).'</td>
+							<td>'.$fecha_r.'</td>
+						</tr></tbody>
+						</table>
+						';
+
 					}
 				}else{
 				$cuerpo .= '
@@ -80,8 +183,7 @@ function reporte_info_empleado($id_empleado){
 					';
 				}
 				$cuerpo .= '
-				</tbody>
-			</table>
+				
 			</div>
         ';  
 
