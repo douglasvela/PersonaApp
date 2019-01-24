@@ -39,9 +39,10 @@ function reporte_info_empleado($id_empleado){
 		while( $fila=mysqli_fetch_array($query_consulta)){
             $info[] = $fila;
          }
+         $total=0;
           
          if($info){ 
-				foreach ($info as $informacion) {
+				
 		$cuerpo = '
 		<h6 style="font-size: 12;">&nbsp;&nbsp;Empleado: '.$key_nombre[2].' - '.($key_nombre[1]).'</h6>
 		<div class="table-responsive">
@@ -61,7 +62,7 @@ function reporte_info_empleado($id_empleado){
 				<tbody>
 					
 					';
-
+					foreach ($info as $informacion) {
 					$cuerpo .= '
 						<tr>
 							<td>'.$informacion[0].'</td>
@@ -71,9 +72,9 @@ function reporte_info_empleado($id_empleado){
 							<td>'.$informacion[4].'</td>
 							<td>'.$informacion[5].'</td>
 							<td>'.$informacion[6].'</td>
-						</tr></tbody>
-					</table>
+						</tr>
 						';
+						$total+=$informacion[6];
 					}
 				}else{
 				$cuerpo .= '
@@ -81,6 +82,12 @@ function reporte_info_empleado($id_empleado){
 					';
 				}
 				$cuerpo .= '
+					<tr>
+						<td colspan="6">Total</td>
+						<td>'.$total.'</td>
+					</tr>
+				</tbody>
+					</table>
 				
 			</div>
         ';  
