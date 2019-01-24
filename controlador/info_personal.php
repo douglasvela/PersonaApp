@@ -42,16 +42,9 @@ function reporte_info_empleado($id_empleado){
 				<thead >
 					<tr>
 						<th >Primer Nombre</th>
-						<th >Segundo Nombre</th>
-						<th >Primer Apellido</th>
-						<th >Segundo Apellido</th>
-						<th >Pasajes</th>
-						<th >Alojamiento</th>
-						<th  >Total</th>						 
+						<th >Segundo Nombre</th>					 
 					</tr>
-					<tr>
-						
-					</tr>
+					
 				</thead>
 				<tbody>
 					
@@ -61,14 +54,25 @@ function reporte_info_empleado($id_empleado){
 						<tr>
 							<td>'.$informacion[1].'</td>
 							<td>'.$informacion[2].'</td>
-							<td>'.$informacion[3].'</td>
-							<td>'.$informacion[4].'</td>
-							<td></td>
-							<td></td>
-							<td></td>
 						</tr>
 						';
-					
+				$cuerpo .='
+					<div class="table-responsive">
+					<table  class="table" style="font-size: 14;">
+						<thead >
+							<tr>
+								<th >Primer Apellido</th>
+								<th >Segundo Apellido</th>
+							</tr>
+						</thead>
+						<tbody>
+				';
+				$cuerpo .= '
+						<tr>
+							<td>'.$informacion[4].'</td>
+							<td>'.$informacion[5].'</td>
+						</tr>
+						';
 					}
 				}else{
 				$cuerpo .= '
