@@ -25,7 +25,7 @@
         var formData = new FormData();
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://viaticos.proyectotesisuesfmp.com/indicadores_inicio.php",
+              url: "http://persona.proyectotesisuesfmp.com/indicadores_inicio.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -38,13 +38,13 @@
             $("#ind_inicio").html(res1);
           }); 
       } 
-      function mostrarformVPendiente() { 
+      function mostrarforminfor() { 
         var formData = new FormData();
-        var usuario = localStorage.getItem('usuario');
-        formData.append("usuario", usuario);
+        var nr = localStorage.getItem('nr');
+        formData.append("nr", nr);
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://viaticos.proyectotesisuesfmp.com/vista/viaticopendiente/viaticopendiente.php",
+              url: "http://persona.proyectotesisuesfmp.com/vista/info_personal/info_personal.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -64,7 +64,7 @@
         formData.append("usuario", usuario);
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://viaticos.proyectotesisuesfmp.com/vista/viaticopagado/viaticopagado.php",
+              url: "http://persona.proyectotesisuesfmp.com/vista/viaticopagado/viaticopagado.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -82,7 +82,7 @@
         var formData = new FormData();  
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://viaticos.proyectotesisuesfmp.com/vista/bitacora_personal/bitacora_personal_viaticos.php",
+              url: "http://persona.proyectotesisuesfmp.com/vista/bitacora_personal/bitacora_personal_viaticos.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -101,7 +101,7 @@
         formData.append("contrasenia", $("#contrasenia").val());
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://viaticos.proyectotesisuesfmp.com/controlador/inicio_sesion.php",
+              url: "http://persona.proyectotesisuesfmp.com/controlador/inicio_sesion.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -131,7 +131,7 @@
         formData.append("nr", localStorage.getItem('nr'));        
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://viaticos.proyectotesisuesfmp.com/controlador/indicadores.php",
+              url: "http://persona.proyectotesisuesfmp.com/controlador/indicadores.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -188,8 +188,8 @@
             <div class="scroll-sidebar">  
                 <nav class="sidebar-nav" >
                     <ul>
-                        <li class="nav-small-cap">ViáticoApp - <span id="nombre"></span></li>
-                         <li><a href="#" class="nav-toggler"  ><i class="ti-timer"></i><span onclick="mostrarformVPendiente()" class="hide-menu">Viáticos Pendientes</span></a></li>
+                        <li class="nav-small-cap">PersonaApp - <span id="nombre"></span></li>
+                         <li><a href="#" class="nav-toggler"  ><i class="ti-timer"></i><span onclick="mostrarforminfor()" class="hide-menu">Información Personal</span></a></li>
                          <li><a href="#" class="nav-toggler"  ><i class="ti-money"></i><span onclick="mostrarformVPagado()" class="hide-menu">Viáticos Pagado</span></a></li>
                         <li><a href="#" class="nav-toggler" ><i class="ti-more-alt"></i><span onclick="mostrarBitacora()" class="hide-menu">Bitácora Personal</span></a></li>
                     </ul>

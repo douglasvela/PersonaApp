@@ -4,7 +4,7 @@
     id          = "com.phone.exa"
     versionCode = "10"
     version     = "1.0.0" >
-    <name>ViáticoApp</name>
+    <name>PersonaApp</name>
     <description>
        App para consultar viáticos y pasajes
     </description>
