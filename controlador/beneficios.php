@@ -49,7 +49,7 @@ function reporte_info_empleado($id_empleado){
 			<table  class="table" style="font-size: 14;">
 				<thead >
 					<tr>
-						<th >Nombre seccion</th>
+						<th >Nombre sección</th>
 						<th >Fecha Registro</th>
 						<th >Bien</th>
 						<th >Articulo</th>

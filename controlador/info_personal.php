@@ -81,7 +81,7 @@ function reporte_info_empleado($id_empleado){
 						<thead >
 							<tr>
 								<th >Estado Civil</th>
-								<th >Genero</th>
+								<th >Género</th>
 							</tr>
 						</thead>
 						<tbody>
