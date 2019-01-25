@@ -21,6 +21,7 @@
     <link href="assets/css/colors/blue.css" id="theme" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <script>
+
       function buscar() { 
         var formData = new FormData();
         $.ajax({
@@ -119,6 +120,7 @@
               localStorage.setItem("nr",arregloDeSubCadenas[1] );
               localStorage.setItem("nombre_completo",arregloDeSubCadenas[2] );
               $("#nombre").html(arregloDeSubCadenas[2]);
+              cargar_indicadores();
             }else{
               $("#form_menu").hide();
               $("#form_inicio_sesion").show();
@@ -157,7 +159,7 @@
 </head>
 
 
-<body class="fix-header fix-sidebar card-no-border" onload="cargar_indicadores()">
+<body class="fix-header fix-sidebar card-no-border">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
