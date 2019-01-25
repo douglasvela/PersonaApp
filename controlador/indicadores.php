@@ -28,7 +28,7 @@ $nr = $_POST['nr'];
 	$query_consulta_docs=mysqli_query($conexion,"select UPPER(CONCAT_WS(' ', e.primer_nombre, e.segundo_nombre, e.tercer_nombre, e.primer_apellido, e.segundo_apellido, e.apellido_casada)) AS nombre_empleado,
 			e.fecha_vencimiento_dui, e.fecha_vencimiento_licencia_armas, 
 			(CASE WHEN fecha_vencimiento_dui = '0000-00-00' THEN '1' WHEN fecha_vencimiento_dui IS NULL THEN '1' WHEN e.fecha_vencimiento_dui <= '".date("Y-m-d")."' THEN '0' ELSE '2' END) dias_dui, 
-			(CASE WHEN fecha_vencimiento_licencia_armas = '0000-00-00' THEN '1' WHEN fecha_vencimiento_licencia_armas IS NULL THEN '1' WHEN e.fecha_vencimiento_licencia_armas <= '".date("Y-m-d")."' THEN '0' ELSE '2' END) dias_licencia_arma from sir_empleado e where id_estado=1 and ((e.fecha_vencimiento_dui <> '0000-00-00' AND e.fecha_vencimiento_dui <= '".date("Y-m-d")."') OR (e.fecha_vencimiento_licencia_armas <> '0000-00-00' AND e.fecha_vencimiento_licencia_armas <= '".date("Y-m-d")."'))"); 
+			(CASE WHEN fecha_vencimiento_licencia_armas = '0000-00-00' THEN '1' WHEN fecha_vencimiento_licencia_armas IS NULL THEN '1' WHEN e.fecha_vencimiento_licencia_armas <= '".date("Y-m-d")."' THEN '0' ELSE '2' END) dias_licencia_arma from sir_empleado e where id_estado=1 and nr='".$nr."' and ((e.fecha_vencimiento_dui <> '0000-00-00' AND e.fecha_vencimiento_dui <= '".date("Y-m-d")."') OR (e.fecha_vencimiento_licencia_armas <> '0000-00-00' AND e.fecha_vencimiento_licencia_armas <= '".date("Y-m-d")."'))"); 
 	$numdoc=mysqli_num_rows($query_consulta_docs);
 	while( $filadocs=mysqli_fetch_array($query_consulta_docs)){
 			$indicador_docs[] = $filadocs;
@@ -37,7 +37,7 @@ $nr = $_POST['nr'];
 ?>
 <div class="container-fluid"> <br>
 	<div class="row">       	
-		<div class="col-lg-4">
+		<div class="col-lg-4" style="display:none">
                 <div class="card card-inverse card-primary">
                     <div class="card-body" style="cursor: pointer;" onclick="" align="center">
                         <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $letras; if($letras==1) { echo " Persona"; }else{ echo " Personas"; } ?></small></h1>
@@ -45,7 +45,7 @@ $nr = $_POST['nr'];
                     </div>
                 </div>
             </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" style="display:none">
                 <div class="card">
                     <div class="card-body">
                         <h4 align="center">Personas empleadas</h4>
@@ -63,8 +63,15 @@ $nr = $_POST['nr'];
         <div class="col-lg-4">
                 <div class="card card-inverse card-success">
                     <div class="card-body" style="cursor: pointer;" onclick="" align="center">
-                        <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $numdoc; if($numdoc==1) { echo " Persona"; }else{ echo " Personas"; } ?></small></h1>
-                        <h3 class="card-title"><?php if($numdoc==1) { echo "Tiene "; }else{ echo "Tienen "; } ?>documentos vencidos<br></h3>
+                        <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $fila_indicador_docs[0]; ?></small></h1>
+                        <h3 class="card-title"><?php 
+                            
+                            if($fila_indicador_docs[3]=="0"){ 
+                                echo "Posee Documento Único de Identidad Vencido";
+                            }else if($fila_indicador_docs[3]=="1"){
+                                echo "No Posee Documento Único de Identidad";}
+                            echo "<br>";
+                       ?><br></h3>
                     </div>
                 </div>
             </div>
