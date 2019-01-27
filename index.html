@@ -122,6 +122,7 @@
               $("#nombre").html(arregloDeSubCadenas[2]);
               cargar_indicadores();
             }else{
+              swal({ title: "¡Ups!", text: "Nombre de Usuario o Contraseña incorrecta.", type: "error", showConfirmButton: true });
               $("#form_menu").hide();
               $("#form_inicio_sesion").show();
             }
