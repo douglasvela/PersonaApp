@@ -29,6 +29,14 @@ $nr = $_POST['nr'];
 			e.fecha_vencimiento_dui, e.fecha_vencimiento_licencia_armas, 
 			(CASE WHEN fecha_vencimiento_dui = '0000-00-00' THEN '1' WHEN fecha_vencimiento_dui IS NULL THEN '1' WHEN e.fecha_vencimiento_dui <= '".date("Y-m-d")."' THEN '0' ELSE '2' END) dias_dui, 
 			(CASE WHEN fecha_vencimiento_licencia_armas = '0000-00-00' THEN '1' WHEN fecha_vencimiento_licencia_armas IS NULL THEN '1' WHEN e.fecha_vencimiento_licencia_armas <= '".date("Y-m-d")."' THEN '0' ELSE '2' END) dias_licencia_arma from sir_empleado e where id_estado=1 and nr='".$nr."' and ((e.fecha_vencimiento_dui <> '0000-00-00' AND e.fecha_vencimiento_dui <= '".date("Y-m-d")."') OR (e.fecha_vencimiento_licencia_armas <> '0000-00-00' AND e.fecha_vencimiento_licencia_armas <= '".date("Y-m-d")."'))"); 
+
+$query_empleado=mysqli_query($conexion,"SELECT UPPER(CONCAT_WS(' ', e.primer_nombre, e.segundo_nombre, e.tercer_nombre, e.primer_apellido, e.segundo_apellido, e.apellido_casada)) AS nombre_empleado FROM `sir_empleado` as e  WHERE e.nr='".$nr."'");
+    while( $filadocs=mysqli_fetch_array($query_empleado)){
+            $indicador_docs[] = $filadocs;
+            }
+    foreach ($indicador_docs as $nombre_e) {} 
+
+
 	$numdoc=mysqli_num_rows($query_consulta_docs);
 	while( $filadocs=mysqli_fetch_array($query_consulta_docs)){
 			$indicador_docs[] = $filadocs;
@@ -63,13 +71,25 @@ $nr = $_POST['nr'];
         <div class="col-lg-4">
                 <div class="card card-inverse card-success">
                     <div class="card-body" style="cursor: pointer;" onclick="" align="center">
-                        <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $fila_indicador_docs[0]; ?></small></h1>
+                        <h1 class="text-white"><i class=""></i> &emsp;<small><?php echo $nombre_e[0]; ?></small></h1>
                         <h3 class="card-title"><?php 
+                            $date = date_create($fila_indicador_docs[1]);
                             
                             if($fila_indicador_docs[3]=="0"){ 
                                 echo "Posee Documento Único de Identidad Vencido";
                             }else if($fila_indicador_docs[3]=="1"){
-                                echo "No Posee Documento Único de Identidad";}
+                                echo "Fecha de Vencimiento incompleta";
+                            }else if($fila_indicador_docs[3]=="2"){
+                                echo "DUI vence: ".date_format($date, 'd-m-Y');
+                            } echo "<br>";echo "<br>"; 
+                            $date2 = date_create($fila_indicador_docs[2]);
+                            if($fila_indicador_docs[3]=="0"){ 
+                                echo "Posee Licencia de Armas Vencido";
+                            }else if($fila_indicador_docs[3]=="1"){
+                                echo "Fecha de Vencimiento incompleta";
+                            }else if($fila_indicador_docs[3]=="2"){
+                                echo "Licencia de armas vence: ".date_format($date2, 'd-m-Y');
+                            }
                             echo "<br>";
                        ?><br></h3>
                     </div>

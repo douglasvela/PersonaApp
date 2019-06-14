@@ -44,7 +44,7 @@ function reporte_info_empleado($id_empleado){
          if($info){ 
 				
 		$cuerpo = '
-		<h6 style="font-size: 12;">&nbsp;&nbsp;Empleado: '.$key_nombre[2].' - '.($key_nombre[1]).'</h6>
+		<h6 style="font-size: 12;">&nbsp;&nbsp;Empleado: '.$key_nombre[3].' - '.($key_nombre[2]).'</h6>
 		<div class="table-responsive">
 			<table  class="table" style="font-size: 14;">
 				<thead >
